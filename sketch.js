@@ -8,9 +8,11 @@ var bgimg
 var paper;
 var ground;
 var dustbin;
+var binImg;
 function preload()
 {
 	bgimg = loadImage("park.png")
+	binImg = loadImage("Dustbin.png")
 }
 
 function setup() {
@@ -20,13 +22,19 @@ function setup() {
 	engine = Engine.create();
 	world = engine.world;
 
-	//Create the Bodies Here.
+	
 
 	paper = new Paper (100,300,30);
 	ground = Bodies.rectangle(width / 2, 700, width, 10,{  isStatic: true});
 		ground = 
 		World.add(world,ground);
-		dustbin = new Dustbin(600,700,300,10)
+		bin = createSprite(964,520,20,20);
+		bin.addImage(binImg);
+		bin.scale = 0.45;
+	
+		binPart1 = new Dustbin(902,505,10,120);
+		binPart2 = new Dustbin(962,565,130,10);
+		binPart3 = new Dustbin(1024,505,10,120);
 	Engine.run(engine);
 	
 }
@@ -34,7 +42,7 @@ function setup() {
 
 function draw() {
   rectMode(CENTER);
-  background(bgimg);
+  background(bgimg );
   paper.display();
   dustbin.display();
   drawSprites();
